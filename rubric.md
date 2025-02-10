@@ -37,7 +37,7 @@ __**YES**__ 1 pt: Program prints appropriate error messages
 
 __**YES**___ 4 pts: Program executes fully & consistently without crashing (exception/freeze)
 
-_____ 1 pt: Classes & class members all have header comments
+__**YES**___ 1 pt: Classes & class members all have header comments
 
 __**YES**___ 1 pt: Clear and consistent indentation
 
@@ -45,6 +45,6 @@ __**YES**___ 1 pt: Adheres to conventions on naming / capitalization
 
 __**YES**___ 1 pt: Methods and variables all have clear and descriptive names
 
-_____ 1 pt: All required files included with submission (including completed checklist file)
+__**YES**___ 1 pt: All required files included with submission (including completed checklist file)
 
 __**YES**___ 1 pt: `reflection.md` contains your reflection on the assignment
