@@ -22,7 +22,8 @@ class Computer:
         self.price = price
         
     # What methods will you need?
-    # def makeComputer(self):
+    
+    # 
+    def update_price(self, new_price: int):
+        self.price = new_price
 
-
-    # def refurbish

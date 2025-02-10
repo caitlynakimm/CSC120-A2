@@ -1,4 +1,6 @@
 from computer import *
+from typing import Optional
+
 class ResaleShop:
 
     # What attributes will it need?
@@ -6,21 +8,18 @@ class ResaleShop:
     inventory = []
     # How will you set up your constructor?
     # Remember: in python, all constructors have the same name (__init__)
-    def __init__(self, inventory: list):
-        self.inventory = inventory
+    def __init__(self):
+        self.inventory = []
 
     # What methods will you need?
-    def buy(self, computer):
-        #1. call Computer(...) constructor
-        #   to create a new Computer instance
-        self.inventory.append(computer)
-        #2. call inventory.append(...) to add the
-        #   new Computer instance to the inventory  
-        return self.inventory.index(computer)
+    def buy(self, description: str, processor_type: str, hard_drive_capacity: int, memory: int, operating_system: str, year_made: int, price: int):
+        new_computer = Computer(description, processor_type, hard_drive_capacity, memory, operating_system, year_made, price)
+        self.inventory.append(new_computer)
 
     def update_price(self, item_id: int, new_price: int):
         if self.inventory[item_id] is not None:
-            self.inventory[item_id]["price"] = new_price
+            # 
+            self.inventory[item_id].update_price(new_price)
         else:
             print("Item", item_id, "not found. Cannot update price.")
 
@@ -37,23 +36,23 @@ class ResaleShop:
             # For each item
             for item in self.inventory:
                 # Print its details
-                print(f'Item ID: {self.inventory.index(item)} : {item}')
+                print(f'Item ID: {self.inventory.index(item)} : {item.description}, {item.processor_type}, {item.hard_drive_capacity}, {item.memory}, {item.operating_system}, {item.year_made}, {item.price}')
         else:
             print("No inventory to display.")
     
     def refurbish(self, item_id: int, new_os: Optional[str] = None):
         if self.inventory[item_id] is not None:
             computer = self.inventory[item_id] # locate the computer
-            if int(computer["year_made"]) < 2000:
-                computer["price"] = 0 # too old to sell, donation only
-            elif int(computer["year_made"]) < 2012:
-                computer["price"] = 250 # heavily-discounted price on machines 10+ years old
-            elif int(computer["year_made"]) < 2018:
-                computer["price"] = 550 # discounted price on machines 4-to-10 year old machines
+            if int(computer.year_made) < 2000:
+                computer.update_price(0) # too old to sell, donation only
+            elif int(computer.year_made) < 2012:
+                computer.update_price(250) # heavily-discounted price on machines 10+ years old
+            elif int(computer.year_made) < 2018:
+                computer.update_price(550) # discounted price on machines 4-to-10 year old machines
             else:
-                computer["price"] = 1000 # recent stuff
+                computer.update_price(1000) # recent stuff
 
             if new_os is not None:
-                computer["operating_system"] = new_os # update details after installing new OS
+                computer.operating_system = new_os # update details after installing new OS
         else:
             print("Item", item_id, "not found. Please select another item to refurbish.")
