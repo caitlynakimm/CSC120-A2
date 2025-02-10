@@ -1,5 +1,5 @@
 from computer import *
-from typing import Optional
+from typing import Optional #
 
 class ResaleShop:
 
@@ -17,14 +17,14 @@ class ResaleShop:
         self.inventory.append(new_computer)
 
     def update_price(self, item_id: int, new_price: int):
-        if self.inventory[item_id] is not None:
+        if 0 <= item_id < len(self.inventory): #starting item index at 0, so item index must be less than # of computers in inventory
             # 
             self.inventory[item_id].update_price(new_price)
         else:
             print("Item", item_id, "not found. Cannot update price.")
 
     def sell(self, item_id: int):
-        if self.inventory[item_id] is not None:
+        if 0 <= item_id < len(self.inventory): #starting item index at 0, so item index must be less than # of computers in inventory
             self.inventory.pop(item_id)
             print("Item", item_id, "sold!")
         else: 
@@ -41,7 +41,7 @@ class ResaleShop:
             print("No inventory to display.")
     
     def refurbish(self, item_id: int, new_os: Optional[str] = None):
-        if self.inventory[item_id] is not None:
+        if 0 <= item_id < len(self.inventory): #starting item index at 0, so item index must be less than # of computers in inventory
             computer = self.inventory[item_id] # locate the computer
             if int(computer.year_made) < 2000:
                 computer.update_price(0) # too old to sell, donation only
